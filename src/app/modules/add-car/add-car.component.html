@@ -1,0 +1,106 @@
+<mat-stepper linear #stepper>
+  <mat-step [stepControl]="carTypeForm">
+    <form [formGroup]="carTypeForm" class="grid grid-cols-2 gap-3">
+      <ng-template matStepLabel>Tell us about your car</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Car Brand</mat-label>
+        <input matInput formControlName="brand"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Model</mat-label>
+        <input matInput formControlName="model"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Kms</mat-label>
+        <input matInput formControlName="km"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Year</mat-label>
+        <input matInput formControlName="year"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Shift</mat-label>
+        <input matInput formControlName="shift"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fuel</mat-label>
+        <input matInput formControlName="fuel"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Color</mat-label>
+        <input matInput formControlName="color"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Body Type</mat-label>
+        <input matInput formControlName="car_type"
+               required>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>E-Car</mat-label>
+        <input matInput formControlName="e_car"
+               required>
+      </mat-form-field>
+      <div class="col-span-2">
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="carDamagesForm">
+    <form [formGroup]="carDamagesForm">
+      <ng-template matStepLabel>Car damages</ng-template>
+      <ng-container formArrayName="damages">
+        <ng-container *ngFor="let damagesForm of damages.controls; let i = index;">
+          <form [formGroupName]="i" class="flex flex-row justify-center">
+            <mat-card class="w-full my-3">
+              <mat-card-title>
+                Damage #{{ i + 1 }}
+              </mat-card-title>
+              <mat-form-field appearance="fill" class="mr-1 w-full">
+                <mat-label>Damaged part</mat-label>
+                <input  matInput
+                        formControlName="part"
+                        required>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="mr-1 w-full">
+                <mat-label>Cost</mat-label>
+                <input  matInput
+                        formControlName="cost"
+                        required>
+              </mat-form-field>
+              <mat-card-actions>
+                <mat-icon (click)="deleteDamage(i)">delete_forever</mat-icon>
+              </mat-card-actions>
+            </mat-card>
+          </form>
+        </ng-container>
+      </ng-container>
+      <button mat-flat-button color="accent" (click)="addNewDamage()" class="mt-3">
+        <mat-icon class="add-course-btn">add</mat-icon>
+        Add damage
+      </button>
+      <div class="mt-3">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="saveCar()" [disabled]="!carTypeForm.valid || (carDamagesForm.value.damages.length === 0 || !carDamagesForm.valid)">
+          {{ !submitting ? 'Save car' : 'Submitting'}}
+        </button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div class="flex flex-row">
+      <button mat-raised-button color="primary" class="mr-2" (click)="stepper.reset()">Add another car</button>
+      <button mat-stroked-button color="primary" routerLink="/dashboard">View Dashboard</button>
+    </div>
+  </mat-step>
+
+</mat-stepper>

@@ -1,0 +1,66 @@
+<section class="h-screen">
+  <div class="container px-6 py-12 h-full">
+    <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+      <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
+        <img
+          src="./assets/undraw_by_my_car_re_j3jt.svg"
+          class="w-full"
+          alt="Phone image"
+        />
+      </div>
+      <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+        <form [formGroup]="signInForm">
+          <!-- Email input -->
+          <div class="mb-1">
+            <mat-form-field appearance="outline" class="w-full">
+             <input
+              matInput
+              type="text"
+              formControlName="email"
+              placeholder="Email address"
+            >
+            </mat-form-field>
+          </div>
+
+          <!-- Password input -->
+          <div class="mb-1">
+            <mat-form-field appearance="outline" class="w-full">
+              <input
+                matInput
+                type="password"
+                formControlName="password"
+                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Password"
+              >
+            </mat-form-field>
+
+          </div>
+
+          <!-- Submit button -->
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full"
+            (click)="signIn()"
+          >
+            Sign in
+          </button>
+
+          <div
+            class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"
+          >
+            <p class="text-center font-semibold mx-4 mb-0">OR</p>
+          </div>
+
+          <button
+            mat-raised-button
+            class="w-full"
+            (click)="googleAuth()"
+            color="accent">
+            Continue with Google
+        </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

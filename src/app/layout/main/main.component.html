@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="flex justify-between align-middle">
+  <div>
+    <a routerLink="/dashboard">
+      <span>Car Portal</span>
+    </a>
+  </div>
+  <div>
+    <button mat-raised-button color="accent" routerLink="/add-car">
+      Add Car
+      <mat-icon>library_add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="signOut()">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -1,0 +1,34 @@
+<div class="grid grid-cols-1 gap-3">
+  <mat-card *ngFor="let car of cars; let i = index;" class="my-3 mx-3">
+    <mat-card-header>
+      <mat-card-title>
+        <span class="mr-2">{{ car.brand }}</span>{{ car.model }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <span>Year: {{ car.year }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-chip-list>
+        <mat-chip>{{ car.km }} KMs</mat-chip>
+        <mat-chip>{{ car.shift }}</mat-chip>
+        <mat-chip>{{ car.fuel }}</mat-chip>
+        <mat-chip>{{ car.color }}</mat-chip>
+        <mat-chip>{{ car.car_type }}</mat-chip>
+        <mat-chip>E-car: {{ car.e_car ? 'Yes' : 'No' }}</mat-chip>
+      </mat-chip-list>
+
+      <mat-list role="list">
+        <div mat-subheader>Damages</div>
+        <mat-list-item *ngFor="let damage of car.damages; let i = index;" class="mb-5">
+          <div class="flex flex-col ">
+            <span class="font-bold">Damage # {{ i + 1 }}:</span>
+            <span class="mr-2">Part: {{ damage.part }}</span>
+            <span>Cost: {{ damage.cost }}€</span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
